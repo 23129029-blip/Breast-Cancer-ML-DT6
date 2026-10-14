@@ -1,0 +1,330 @@
+
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>BreastCare AI | Hỗ trợ nghiên cứu ung thư vú</title>
+
+    <link rel="stylesheet" href="/static/style.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+
+<body>
+    <div class="app-layout">
+
+        <!-- ======================================
+             THANH MENU BÊN TRÁI
+        ======================================= -->
+        <aside class="sidebar">
+            <div class="brand">
+                <div class="brand-icon">+</div>
+
+                <div>
+                    <h2>BreastCare AI</h2>
+                    <p>RESEARCH PLATFORM</p>
+                </div>
+            </div>
+
+            <div class="nav-label">MENU CHÍNH</div>
+
+            <button class="nav-item active" data-page="overview">
+                ◫ Tổng quan
+            </button>
+
+            <button class="nav-item" data-page="prediction">
+                ✚ Dự đoán
+            </button>
+
+            <button class="nav-item" data-page="evaluation">
+                ▥ Đánh giá mô hình
+            </button>
+
+            <div class="sidebar-note">
+                <strong>Thông tin sử dụng</strong>
+                <p>
+                    Công cụ phục vụ học tập và nghiên cứu,
+                    không thay thế chẩn đoán của bác sĩ.
+                </p>
+            </div>
+        </aside>
+
+        <!-- ======================================
+             NỘI DUNG CHÍNH
+        ======================================= -->
+        <main class="main-content">
+
+            <header class="topbar">
+                <div>
+                    <p class="eyebrow">BREAST CANCER WISCONSIN</p>
+                    <h1 id="page-title">Tổng quan hệ thống</h1>
+                </div>
+
+                <div class="status">
+                    <span></span>
+                    Hệ thống nghiên cứu
+                </div>
+            </header>
+
+            <!-- ==================================
+                 TRANG 1: TỔNG QUAN
+            =================================== -->
+            <section id="overview" class="page active">
+
+                <div class="welcome">
+                    <div>
+                        <p class="eyebrow light">
+                            MACHINE LEARNING DASHBOARD
+                        </p>
+
+                        <h2>Phân tích dữ liệu ung thư vú</h2>
+
+                        <p>
+                            Khám phá dữ liệu, hỗ trợ dự đoán
+                            và so sánh hiệu suất các mô hình học máy.
+                        </p>
+                    </div>
+
+                    <div class="welcome-symbol">✚</div>
+                </div>
+
+                <div class="stat-grid">
+
+                    <article class="stat-card">
+                        <p>Tổng số mẫu</p>
+                        <h2 id="total-samples">—</h2>
+                        <span>Dữ liệu Wisconsin</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Số đặc trưng</p>
+                        <h2 id="total-features">—</h2>
+                        <span>Đặc trưng đầu vào</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Mẫu ác tính</p>
+                        <h2 id="malignant-count">—</h2>
+                        <span class="tag danger">Malignant</span>
+                    </article>
+
+                    <article class="stat-card">
+                        <p>Mẫu lành tính</p>
+                        <h2 id="benign-count">—</h2>
+                        <span class="tag success">Benign</span>
+                    </article>
+
+                </div>
+
+                <div class="content-grid">
+
+                    <article class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Phân bố nhãn dữ liệu</h3>
+                                <p>Tỷ lệ mẫu theo lớp</p>
+                            </div>
+                        </div>
+
+                        <div class="chart-box">
+                            <canvas id="class-chart"></canvas>
+                        </div>
+                    </article>
+
+                    <article class="panel">
+                        <div class="panel-heading">
+                            <div>
+                                <h3>Quy trình hệ thống</h3>
+                                <p>Các bước xử lý chính</p>
+                            </div>
+                        </div>
+
+                        <div class="workflow">
+
+                            <div>
+                                <span>01</span>
+                                <section>
+                                    <strong>Tiếp nhận dữ liệu</strong>
+                                    <p>30 đặc trưng của mẫu</p>
+                                </section>
+                            </div>
+
+                            <div>
+                                <span>02</span>
+                                <section>
+                                    <strong>Tiền xử lý</strong>
+                                    <p>Chuẩn hóa và chọn đặc trưng</p>
+                                </section>
+                            </div>
+
+                            <div>
+                                <span>03</span>
+                                <section>
+                                    <strong>Mô hình SVM RBF</strong>
+                                    <p>Tính xác suất dự đoán</p>
+                                </section>
+                            </div>
+
+                            <div>
+                                <span>04</span>
+                                <section>
+                                    <strong>Hiển thị kết quả</strong>
+                                    <p>Phục vụ mục đích nghiên cứu</p>
+                                </section>
+                            </div>
+
+                        </div>
+                    </article>
+
+                </div>
+            </section>
+
+            <!-- ==================================
+                 TRANG 2: DỰ ĐOÁN
+            =================================== -->
+            <section id="prediction" class="page">
+
+                <div class="panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Thông số mẫu cần phân tích</h3>
+                            <p>
+                                Chọn mẫu tham khảo từ bộ dữ liệu Wisconsin
+                                hoặc nhập giá trị cho 30 đặc trưng.
+                            </p>
+                        </div>
+                    </div>
+
+                    <!-- 30 ô nhập liệu được tạo bằng JavaScript -->
+                    <div id="feature-form" class="feature-grid"></div>
+
+                    <!-- CHỌN MẪU VÀ THỰC HIỆN DỰ ĐOÁN -->
+                    <div class="form-actions">
+
+                        <label for="sample-index-input">
+                            Chọn mẫu (1–569):
+                        </label>
+
+                        <input
+                            id="sample-index-input"
+                            type="number"
+                            min="1"
+                            max="569"
+                            step="1"
+                            value="1"
+                            required
+                            style="width: 100px;"
+                            aria-label="Số thứ tự mẫu từ 1 đến 569"
+                        >
+
+                        <button
+                            id="select-sample-btn"
+                            class="btn secondary"
+                            type="button"
+                        >
+                            Tải mẫu đã chọn
+                        </button>
+
+                        <button
+                            id="sample-btn"
+                            class="btn secondary"
+                            type="button"
+                        >
+                            Mẫu tiếp theo
+                        </button>
+
+                        <button
+                            id="predict-btn"
+                            class="btn primary"
+                            type="button"
+                        >
+                            Phân tích mẫu
+                        </button>
+
+                    </div>
+
+                    <!-- Thông tin mẫu được hiển thị tại đây -->
+                    <p
+                        id="sample-info"
+                        class="sample-info"
+                        aria-live="polite"
+                    ></p>
+
+                    <!-- Kết quả dự đoán -->
+                    <div
+                        id="prediction-result"
+                        class="result-box hidden"
+                        aria-live="polite"
+                    ></div>
+
+                </div>
+            </section>
+
+            <!-- ==================================
+                 TRANG 3: ĐÁNH GIÁ MÔ HÌNH
+            =================================== -->
+            <section id="evaluation" class="page">
+
+                <article class="panel">
+
+                    <div class="panel-heading">
+                        <div>
+                            <h3>Kết quả Nested Cross-Validation</h3>
+                            <p>
+                                Giá trị trung bình và độ lệch chuẩn
+                                theo các fold đánh giá.
+                            </p>
+                        </div>
+
+                        <button
+                            id="refresh-evaluation"
+                            class="btn secondary"
+                            type="button"
+                        >
+                            Làm mới dữ liệu
+                        </button>
+                    </div>
+
+                    <div id="evaluation-message" class="notice">
+                        Đang chờ kết nối dữ liệu đánh giá.
+                    </div>
+
+                    <div class="table-wrap">
+                        <table>
+                            <thead>
+                                <tr id="evaluation-head"></tr>
+                            </thead>
+
+                            <tbody id="evaluation-body"></tbody>
+                        </table>
+                    </div>
+
+                    <div class="chart-box evaluation-chart">
+                        <canvas id="model-chart"></canvas>
+                    </div>
+
+                </article>
+
+                <p class="disclaimer">
+                    Kết quả đánh giá mô hình chỉ phục vụ học tập
+                    và nghiên cứu, không phải bằng chứng xác nhận
+                    khả năng chẩn đoán lâm sàng.
+                </p>
+
+            </section>
+
+            <!-- CHÂN TRANG -->
+            <footer>
+                BreastCare AI · Hệ thống thông minh · Công cụ nghiên cứu
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- JAVASCRIPT -->
+    <script src="/static/app.js"></script>
+
+</body>
+</html>
